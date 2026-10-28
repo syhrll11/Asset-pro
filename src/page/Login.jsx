@@ -57,8 +57,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-4 font-sans selection:bg-blue-100 selection:text-blue-900">
-      <div className="w-full max-w-[420px]">
+    <div className="h-screen min-h-screen overflow-y-auto bg-slate-50 flex flex-col items-center p-4 sm:p-6 font-sans selection:bg-blue-100 selection:text-blue-900">
+      <div className="my-auto w-full max-w-[420px]">
         {/* Tombol kembali ke landing page */}
         <div className="mb-4">
           <Link
@@ -71,7 +71,7 @@ const Login = () => {
         </div>
 
         {/* Card Login */}
-        <div className="bg-white border border-slate-200/90 rounded-xl p-8 shadow-card">
+        <div className="bg-white border border-slate-200/90 rounded-xl p-5 sm:p-8 shadow-card">
           {/* Header Card */}
           <div className="text-center mb-6">
             <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center mx-auto mb-3 shadow-sm">
@@ -104,7 +104,7 @@ const Login = () => {
                 value={email_karyawan}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-colors"
+                className="w-full min-h-11 px-3.5 py-2.5 text-base sm:text-sm bg-white border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-colors"
               />
             </div>
 
@@ -127,12 +127,12 @@ const Login = () => {
                   value={password_user}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full px-3.5 py-2.5 pr-10 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-colors"
+                  className="w-full min-h-11 px-3.5 py-2.5 pr-10 text-base sm:text-sm bg-white border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-600 focus:outline-none"
                   aria-label={showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'}
                 >
                   {showPassword ? (
@@ -147,7 +147,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full mt-2 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-70 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+              className="w-full min-h-11 mt-2 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-70 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
             >
               {isLoading ? 'Memverifikasi...' : 'Masuk ke Sistem'}
             </button>
@@ -162,7 +162,7 @@ const Login = () => {
                     key={account.role}
                     type="button"
                     onClick={() => fillDemoAccount(account.email)}
-                    className="rounded-md border border-blue-200 bg-white px-2 py-2 text-xs font-semibold text-blue-700 transition-colors hover:bg-blue-100"
+                    className="min-h-11 rounded-md border border-blue-200 bg-white px-2 py-2 text-xs font-semibold text-blue-700 transition-colors hover:bg-blue-100"
                   >
                     {account.role}
                   </button>
