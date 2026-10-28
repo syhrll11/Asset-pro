@@ -12,7 +12,7 @@ import {
   HiOutlineDocumentChartBar,
 } from 'react-icons/hi2';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen = true, onNavigate }) => {
   const location = useLocation();
   const currentPath = location.pathname.toLowerCase();
 
@@ -40,6 +40,7 @@ const Sidebar = () => {
       <Link
         key={item.name}
         to={item.path}
+        onClick={onNavigate}
         className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors mb-1 ${
           isActive
             ? 'bg-blue-50 text-blue-700 font-semibold'
@@ -55,7 +56,11 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-[250px] shrink-0 bg-white border-r border-slate-200/90 flex flex-col h-screen font-sans select-none">
+    <aside
+      className={`app-sidebar flex shrink-0 flex-col border-r border-slate-200/90 bg-white font-sans select-none ${
+        isOpen ? 'is-open' : ''
+      }`}
+    >
       {/* Brand Header */}
       <div className="h-16 px-5 border-b border-slate-100 flex items-center gap-3">
         <div className="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center shadow-sm shrink-0">

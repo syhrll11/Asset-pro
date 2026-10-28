@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
@@ -29,9 +29,14 @@ import "./App.css";
 
 const App = () => {
   const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const noLayoutPaths = ["/", "/login"];
   const isNoLayout = noLayoutPaths.includes(location.pathname);
+
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [location.pathname]);
 
   return (
     <>
@@ -41,11 +46,25 @@ const App = () => {
           <Route path="/login" element={<Login />} />
         </Routes>
       ) : (
-        <div className="flex h-screen w-screen bg-slate-50 overflow-hidden font-sans">
-          <Sidebar />
-          <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
-            <Topbar />
-            <main className="flex-1 overflow-y-auto p-6 bg-slate-50">
+        <div className="flex h-screen h-[100dvh] w-full max-w-full bg-slate-50 overflow-hidden font-sans">
+          {isSidebarOpen && (
+            <button
+              type="button"
+              aria-label="Tutup menu navigasi"
+              onClick={() => setIsSidebarOpen(false)}
+              className="fixed inset-0 z-40 bg-slate-900/40 md:hidden"
+            />
+          )}
+          <Sidebar
+            isOpen={isSidebarOpen}
+            onNavigate={() => setIsSidebarOpen(false)}
+          />
+          <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+            <Topbar
+              onMenuClick={() => setIsSidebarOpen(true)}
+              isMenuOpen={isSidebarOpen}
+            />
+            <main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden p-3 sm:p-5 lg:p-6 bg-slate-50">
               <Routes key={location.pathname} location={location}>
                 <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
                 <Route path="/gudang" element={<PrivateRoute><MainGudang /></PrivateRoute>} />
