@@ -21,7 +21,7 @@ import {
 
 export default function LandingPage() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-  const isDemoMode = import.meta.env.VITE_DEMO_MODE !== 'false';
+  const isDemoMode = true;
   const [activeTab, setActiveTab] = useState('fitur'); // 'fitur' | 'tentang'
   const sliderRef = useRef(null);
 

@@ -16,7 +16,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const isDemoMode = import.meta.env.VITE_DEMO_MODE !== 'false';
+  const isDemoMode = true;
   const demoAccounts = [
     { role: 'Admin', email: 'admin@demo.assetpro.local' },
     { role: 'Manager', email: 'manager@demo.assetpro.local' },
